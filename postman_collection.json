@@ -1,0 +1,147 @@
+{
+  "info": {
+    "_postman_id": "b6a2f301-419b-4b2a-89f5-19e9bf9b59cb",
+    "name": "API Productos - Laboratorio Render",
+    "description": "Colección de pruebas para la API de productos desplegada en Render",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "01. GET - Bienvenida y Entorno",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            ""
+          ]
+        },
+        "description": "Verifica el endpoint raíz y el valor de NODE_ENV (development / production)"
+      },
+      "response": []
+    },
+    {
+      "name": "02. GET - Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/health",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "health"
+          ]
+        },
+        "description": "Endpoint de monitoreo y estado de salud del servicio"
+      },
+      "response": []
+    },
+    {
+      "name": "03. GET - Listar Productos",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/productos",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "productos"
+          ]
+        },
+        "description": "Obtiene la lista de productos disponibles"
+      },
+      "response": []
+    },
+    {
+      "name": "04. POST - Crear Producto (Válido)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nombre\": \"Monitor Gamer 24 pulgadas\",\n  \"precio\": 1350\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/productos",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "productos"
+          ]
+        },
+        "description": "Envía una solicitud válida para crear un producto. Retorna 201."
+      },
+      "response": []
+    },
+    {
+      "name": "05. POST - Crear Producto (Inválido - Error 400)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nombre\": \"\",\n  \"precio\": -10\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/productos",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "productos"
+          ]
+        },
+        "description": "Envía datos inválidos para probar la validación de la solicitud. Retorna 400."
+      },
+      "response": []
+    },
+    {
+      "name": "06. GET - Ruta No Encontrada (404)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/ruta-inexistente",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "ruta-inexistente"
+          ]
+        },
+        "description": "Prueba el middleware de ruta no encontrada 404."
+      },
+      "response": []
+    }
+  ]
+}
