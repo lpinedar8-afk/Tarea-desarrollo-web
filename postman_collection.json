@@ -8,7 +8,7 @@
   "variable": [
     {
       "key": "baseUrl",
-      "value": "http://localhost:3000",
+      "value": "https://tarea-desarrollo-web.onrender.com",
       "type": "string"
     }
   ],
@@ -140,6 +140,46 @@
           ]
         },
         "description": "Prueba el middleware de ruta no encontrada 404."
+      },
+      "response": []
+    },
+    {
+      "name": "07. GET - Producto por ID (Existente)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/productos/1",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "productos",
+            "1"
+          ]
+        },
+        "description": "Obtiene un producto específico por su ID. Retorna 200."
+      },
+      "response": []
+    },
+    {
+      "name": "08. GET - Producto por ID (No Encontrado - 404)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/productos/99",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "productos",
+            "99"
+          ]
+        },
+        "description": "Prueba la respuesta 404 cuando un producto no existe."
       },
       "response": []
     }

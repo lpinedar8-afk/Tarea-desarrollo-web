@@ -32,4 +32,5 @@ npm run dev
 - `GET /` - Bienvenida e información del entorno actual.
 - `GET /health` - Estado de salud y timestamp del servicio.
 - `GET /api/productos` - Listado de productos.
+- `GET /api/productos/:id` - Obtención de producto específico por ID (retorna 404 si no existe).
 - `POST /api/productos` - Validación y simulación de registro de producto.

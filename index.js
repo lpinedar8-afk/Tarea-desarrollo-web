@@ -21,7 +21,7 @@ if (process.env.FRONTEND_URL) {
 //endpoint de bienvenida
 app.get("/", (req, res) => {
   res.json({
-    mensaje: "Bienvenido a la API, version 2",
+    mensaje: "Bienvenido a la API, version 2.1 (Produccion)",
     entorno: NODE_ENV
   });
 });
@@ -35,12 +35,26 @@ app.get("/health", (req, res) => {
   });
 });
 
+const productos = [
+  { id: 1, nombre: "Teclado", precio: 250 },
+  { id: 2, nombre: "Mouse", precio: 125 }
+];
+
 //endpoint obtener productos
 app.get("/api/productos", (req, res) => {
-  res.status(200).json([
-    { id: 1, nombre: "Teclado", precio: 250 },
-    { id: 2, nombre: "Mouse", precio: 125 }
-  ]);
+  res.status(200).json(productos);
+});
+
+//endpoint obtener producto por ID
+app.get("/api/productos/:id", (req, res) => {
+  const id = parseInt(req.params.id, 10);
+  const producto = productos.find(p => p.id === id);
+  if (!producto) {
+    return res.status(404).json({
+      error: "Producto no encontrado"
+    });
+  }
+  res.status(200).json(producto);
 });
 
 //validación de solicitudes
